@@ -54,7 +54,7 @@ export default function ResidentialPage() {
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden">
                <Image 
-                 src="https://images.unsplash.com/photo-1624397640148-949b1732bb0a?q=80&w=2574&auto=format&fit=crop"
+                 src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2670&auto=format&fit=crop"
                  alt="Solar panel installation close-up"
                  fill
                  className="object-cover"

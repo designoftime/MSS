@@ -38,7 +38,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden border border-white/10">
               <Image 
-                src="https://images.unsplash.com/photo-1605980776566-0486c3ac775b?q=80&w=2670&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2670&auto=format&fit=crop"
                 alt="Engineers planning"
                 fill
                 className="object-cover"

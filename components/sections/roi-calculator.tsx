@@ -24,7 +24,7 @@ export function CalculatorSection() {
 
   return (
     <section className="py-24 bg-midnight-900 relative">
-      <div className="absolute inset-0 bg-[url('/grain.png')] opacity-[0.03] pointer-events-none" />
+
       
       <Container>
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-midnight-800 to-midnight-950 border border-white/10 p-8 md:p-16">

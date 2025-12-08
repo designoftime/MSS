@@ -20,13 +20,13 @@ const steps = [
     icon: ClipboardCheck,
     title: "Design & Permitting",
     description: "Our engineers design a system for maximum efficiency. We handle all city permits and utility approvals for you.",
-    image: "https://images.unsplash.com/photo-1581094794329-cd1196532881?q=80&w=2670&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2670&auto=format&fit=crop"
   },
   {
     icon: Wrench,
     title: "Premium Installation",
     description: "Our certified master installers complete the job in 1-2 days using high-end mounting hardware that protects your roof.",
-    image: "https://images.unsplash.com/photo-1617155093730-a8bf47e3a769?q=80&w=2670&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2670&auto=format&fit=crop"
   },
   {
     icon: Sun,

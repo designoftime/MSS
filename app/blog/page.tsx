@@ -3,7 +3,7 @@ import Image from "next/image"
 import { PageHeader } from "@/components/sections/page-header"
 import { Container } from "@/components/ui/container"
 import { CTA } from "@/components/sections/cta"
-import { blogPosts } from "@/lib/blog"
+import { blogPosts } from "@/data/blog"
 import { ArrowRight, Clock } from "lucide-react"
 
 export const metadata = {

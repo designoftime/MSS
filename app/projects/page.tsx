@@ -6,7 +6,7 @@ import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { PageHeader } from "@/components/sections/page-header"
 import { Container } from "@/components/ui/container"
-import { projects } from "@/lib/projects"
+import { projects } from "@/data/projects"
 import { cn } from "@/lib/utils"
 import { CTA } from "@/components/sections/cta"
 
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
                    <Link href={`/projects/${project.slug}`} className="block group h-full">
                      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-6 border border-white/10">
                        <Image
-                         src={project.image}
+                         src={project.heroImage}
                          alt={project.title}
                          fill
                          className="object-cover transition-transform duration-700 group-hover:scale-105"
