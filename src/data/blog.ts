@@ -24,7 +24,7 @@ export const blogPosts: BlogPost[] = [
         readTime: "5 min read",
         author: "Robert Fox",
         category: "Technology",
-        heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2669&auto=format&fit=crop",
+        heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2670&auto=format&fit=crop",
         content: `
 # The Future of Solar Energy
 

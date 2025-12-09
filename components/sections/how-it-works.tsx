@@ -44,44 +44,32 @@ export function HowItWorks() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin the left column (Content) while scrolling through images on the right?
-      // Actually, let's pin the IMAGE (Right) and scroll the TEXT (Left) or vice versa.
-      // Typical scroll-telling: Sticky Image on right, scrolling text on left.
-      
       const mm = gsap.matchMedia()
       
       mm.add("(min-width: 1024px)", () => {
-        // Pin the right column (Images)
         ScrollTrigger.create({
           trigger: containerRef.current,
           start: "top top",
           end: "bottom bottom",
           pin: rightColRef.current,
-          pinSpacing: false, // Right col matches height of container, but we want it sticky
+          pinSpacing: false,
         })
 
-        // We need to coordinate sections.
-        // Actually, easiest way: One big container.
-        // Right side is sticky.
-        // Left side scrolls.
-        // Images change based on scroll position of left sections.
-
-        const imgContainer = rightColRef.current
         const stepSections = gsap.utils.toArray<HTMLElement>(".step-section")
         const stepImages = gsap.utils.toArray<HTMLElement>(".step-image")
 
-        // Progress Bar
-        gsap.fromTo(progressBarRef.current, 
+        gsap.fromTo(
+          progressBarRef.current,
           { height: "0%" },
-          { 
-            height: "100%", 
+          {
+            height: "100%",
             ease: "none",
             scrollTrigger: {
               trigger: containerRef.current,
               start: "top center",
               end: "bottom center",
-              scrub: true
-            }
+              scrub: true,
+            },
           }
         )
 
@@ -92,22 +80,27 @@ export function HowItWorks() {
             end: "bottom center",
             onToggle: (self) => {
               if (self.isActive) {
-                // Show corresponding image
-                gsap.to(stepImages, { opacity: 0, duration: 0.5, overwrite: true })
-                gsap.to(stepImages[i], { opacity: 1, duration: 0.5, overwrite: true })
-                
-                // Highlight text
-                gsap.to(section, { opacity: 1, x: 0, duration: 0.5 })
-              } else {
-                 // Dim text
-                 // gsap.to(section, { opacity: 0.3, x: 0, duration: 0.5 }) 
-                 // Keeping it simpler: just active state logic
+                gsap.to(stepImages, {
+                  opacity: 0,
+                  duration: 0.5,
+                  overwrite: true,
+                })
+                gsap.to(stepImages[i], {
+                  opacity: 1,
+                  duration: 0.5,
+                  overwrite: true,
+                })
+
+                gsap.to(section, {
+                  opacity: 1,
+                  x: 0,
+                  duration: 0.5,
+                })
               }
-            }
+            },
           })
         })
       })
-
     }, containerRef)
 
     return () => ctx.revert()
@@ -117,17 +110,20 @@ export function HowItWorks() {
     <section ref={containerRef} className="bg-midnight-950 py-32 relative">
       <Container>
         <div className="mb-20 text-center">
-           <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">Simple 4-Step Process</h2>
-           <p className="text-white/60 max-w-2xl mx-auto">From our first conversation to energy independence, we make the journey seamless and exciting.</p>
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-6">
+            Simple 4-Step Process
+          </h2>
+          <p className="text-white/60 max-w-2xl mx-auto">
+            From our first conversation to energy independence, we make the journey seamless and exciting.
+          </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-20">
-          {/* Left Column: Steps (Scrolling) */}
+          {/* Left Column */}
           <div ref={leftColRef} className="w-full lg:w-1/2 relative pl-12 border-l border-white/10">
-            {/* Progress Bar */}
             <div className="absolute left-[-1px] top-0 w-[3px] bg-gold-500 h-0" ref={progressBarRef} />
 
-            <div className="space-y-[50vh] pb-[20vh]"> {/* Spacing to separate steps */}
+            <div className="space-y-[50vh] pb-[20vh]">
               {steps.map((step, i) => (
                 <div key={i} className="step-section opacity-50 transition-opacity duration-300">
                   <div className="flex items-center gap-4 mb-6">
@@ -137,7 +133,7 @@ export function HowItWorks() {
                     <h3 className="text-3xl font-heading font-bold text-white">{step.title}</h3>
                   </div>
                   <p className="text-xl text-white/70 leading-relaxed mb-8">{step.description}</p>
-                   {/* Mobile Integration of Image within flow? No, stick to desktop split. Mobile can just stack. */}
+
                   <div className="lg:hidden relative aspect-video rounded-2xl overflow-hidden mb-8">
                      <Image src={step.image} alt={step.title} fill className="object-cover" />
                   </div>
@@ -146,17 +142,34 @@ export function HowItWorks() {
             </div>
           </div>
 
-          {/* Right Column: Images (Sticky) */}
+          {/* Right Column: Images (Sticky)*/}
           <div className="hidden lg:block w-1/2 relative">
-            <div ref={rightColRef} className="sticky top-[20vh] h-[60vh] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-              {steps.map((step, i) => (
-                <div key={i} className="step-image absolute inset-0 w-full h-full opacity-0 first:opacity-100">
-                  <Image src={step.image} alt={step.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-midnight-950/60 to-transparent" />
+            {/* Keep this element pinned/sticky by ScrollTrigger */}
+            <div ref={rightColRef} className="sticky top-0 h-[75vh] rounded-3xl pointer-events-none">
+              {/* Inner frame holds the visible image card and we shift the inner frame upward */}
+              <div className="pointer-events-auto w-full h-full flex items-start justify-end">
+                {/* The image card - pulled upward with negative mt (responsive) and aligned right */}
+                <div
+                  className="
+                    w-[88%] max-w-[780px] 
+                    h-[74%] 
+                    mt-[-8vh] lg:mt-[-12vh] 
+                    mr-6 lg:mr-10
+                    rounded-3xl overflow-hidden border border-white/10 shadow-2xl
+                    relative
+                  "
+                >
+                  {steps.map((step, i) => (
+                    <div key={i} className="step-image absolute inset-0 w-full h-full opacity-0 first:opacity-100">
+                      <Image src={step.image} alt={step.title} fill className="object-cover object-right" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-midnight-950/60 to-transparent" />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
+
         </div>
       </Container>
     </section>
