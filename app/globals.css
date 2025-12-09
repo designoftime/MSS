@@ -1,0 +1,61 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-heading: var(--font-outfit), ui-sans-serif, system-ui;
+  
+  --color-midnight-50: #f0f4fd;
+  --color-midnight-100: #e2eafb;
+  --color-midnight-200: #c9daf8;
+  --color-midnight-300: #a3c2f4;
+  --color-midnight-400: #749fee;
+  --color-midnight-500: #4f7ce7;
+  --color-midnight-600: #345edd;
+  --color-midnight-700: #264ac6;
+  --color-midnight-800: #233e9f;
+  --color-midnight-900: #1e3a8a; /* Lighter Midnight */
+  --color-midnight-950: #0f172a; /* Keep deep for contrast, but we will use gradient */
+  
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold-700: #b45309;
+  --color-gold-800: #92400e;
+  --color-gold-900: #78350f;
+  --color-gold-950: #451a03;
+  
+  --spacing-18: 4.5rem;
+  --spacing-112: 28rem;
+  --spacing-128: 32rem;
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-midnight-950 text-white selection:bg-gold-500/30;
+    background-image: radial-gradient(circle at 50% 0%, #172554 0%, #0f172a 60%);
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glass-panel {
+    @apply bg-midnight-900/60 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-gold-200 via-gold-400 to-gold-600 bg-clip-text text-transparent;
+  }
+}
